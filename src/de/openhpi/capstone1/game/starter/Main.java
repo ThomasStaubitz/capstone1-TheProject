@@ -16,7 +16,7 @@ public class Main {
 	public static void main(final String[] args) {
 		PApplet.main(new String[] { TheApp.class.getName() });
 		// Fullscreen
-		// PApplet.main(new String[]{"--present",TheStopwatch.class.getName()});
+		// PApplet.main(new String[] { "--present", TheApp.class.getName() });
 	}
 
 }
