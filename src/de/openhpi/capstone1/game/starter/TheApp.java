@@ -5,12 +5,12 @@ import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.builder.InteractiveComponentBuilder;
 import processing.core.PApplet;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TheApp.
  */
 public class TheApp extends PApplet {
 
+	/** The game screen. */
 	private InteractiveComponent gameScreen;
 
 	/*
@@ -21,7 +21,11 @@ public class TheApp extends PApplet {
 	@Override
 	public void settings() {
 		// Size of the window
-		size(500, 500);
+		size(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
+
+		// IMPORTANT: If you experience any graphical issues, set this to 3 or 2,
+		// alternatively remove it.
+		smooth(4);
 	}
 
 	/*
