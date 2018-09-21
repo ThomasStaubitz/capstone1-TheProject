@@ -26,4 +26,8 @@ public class InteractiveComponentBuilder {
 			return null;
 		}
 	}
+
+	private InteractiveComponentBuilder() {
+
+	}
 }
