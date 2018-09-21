@@ -2,7 +2,6 @@ package de.openhpi.capstone1.game.view;
 
 import processing.core.PApplet;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractView.
  */

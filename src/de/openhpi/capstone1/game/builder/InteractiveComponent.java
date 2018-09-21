@@ -13,7 +13,7 @@ public abstract class InteractiveComponent {
 	/**
 	 * Instantiates a new interactive component.
 	 *
-	 * @param display
+	 * @param display the display
 	 */
 	public InteractiveComponent(final PApplet display) {
 		views = new ArrayList<>();

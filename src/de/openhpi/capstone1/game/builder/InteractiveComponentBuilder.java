@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import processing.core.PApplet;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class InteractiveComponentBuilder.
  */

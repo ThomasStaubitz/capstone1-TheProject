@@ -1,6 +1,5 @@
 package de.openhpi.capstone1.game.controller;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Controller.
  */
