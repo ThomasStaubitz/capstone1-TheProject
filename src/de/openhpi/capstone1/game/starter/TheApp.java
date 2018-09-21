@@ -1,5 +1,8 @@
 package de.openhpi.capstone1.game.starter;
 
+import de.openhpi.capstone1.game.builder.GameScreen;
+import de.openhpi.capstone1.game.builder.InteractiveComponent;
+import de.openhpi.capstone1.game.builder.InteractiveComponentBuilder;
 import processing.core.PApplet;
 
 // TODO: Auto-generated Javadoc
@@ -7,6 +10,8 @@ import processing.core.PApplet;
  * The Class TheApp.
  */
 public class TheApp extends PApplet {
+
+	private InteractiveComponent gameScreen;
 
 	/*
 	 * (non-Javadoc)
@@ -27,6 +32,8 @@ public class TheApp extends PApplet {
 	@Override
 	public void setup() { // setup() runs once
 		frameRate(30);
+
+		gameScreen = InteractiveComponentBuilder.create(this, GameScreen.class);
 	}
 
 	/*
@@ -36,7 +43,7 @@ public class TheApp extends PApplet {
 	 */
 	@Override
 	public void draw() { // draw() loops forever, until stopped
-
+		gameScreen.update();
 	}
 
 	/*
