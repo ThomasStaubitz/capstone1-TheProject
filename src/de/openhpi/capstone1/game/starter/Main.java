@@ -2,7 +2,6 @@ package de.openhpi.capstone1.game.starter;
 
 import processing.core.PApplet;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Main.
  */
@@ -14,9 +13,10 @@ public class Main {
 	 * @param args the arguments
 	 */
 	public static void main(final String[] args) {
-		PApplet.main(new String[] { TheApp.class.getName() });
-		// Fullscreen
-		// PApplet.main(new String[]{"--present",TheStopwatch.class.getName()});
+		if (Settings.USE_FULLSCREEN) {
+			PApplet.main(new String[] { "--present", TheApp.class.getName() });
+		} else {
+			PApplet.main(new String[] { TheApp.class.getName() });
+		}
 	}
-
 }
