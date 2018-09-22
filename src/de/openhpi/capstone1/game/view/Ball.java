@@ -7,12 +7,17 @@ import processing.core.PApplet;
  * The Class Ball.
  */
 public class Ball extends AbstractView {
-
+	
+	int first = 0;
+	int cord[] = new int[2];
 	/**
 	 * Instantiates a new ball.
 	 *
 	 * @param display the display
 	 */
+	BallMove movement = new BallMove();
+	CollideWith collision = new CollideWith();
+	
 	public Ball(final PApplet display) {
 		super(display);
 	}
@@ -26,9 +31,27 @@ public class Ball extends AbstractView {
 	public void update() {
 		display.ellipseMode(PApplet.CENTER);
 		display.fill(Settings.BALL_COLOR);
-		display.ellipse(Settings.WINDOW_WIDTH / 2.0f - Settings.BALL_SIZE / 2.0f,
-				Settings.WINDOW_HEIGHT - Settings.PADDLE_HEIGHT - Settings.BALL_SIZE, Settings.BALL_SIZE,
-				Settings.BALL_SIZE);
+		if(first ==0) {
+			movement.randomStart();
+			cord = movement.move();
+			display.ellipse(cord[0],cord[1], Settings.BALL_SIZE,Settings.BALL_SIZE);
+			first = 1;
+		}else {
+			if(collision.collideWithWall(movement.x, movement.y,movement.xspeed,movement.yspeed)){
+				movement.randomStart();
+				cord = movement.move();
+				display.ellipse(cord[0],cord[1], Settings.BALL_SIZE,Settings.BALL_SIZE);
+			}else {
+				collision.collideWithWall(movement.x, movement.y,movement.xspeed,movement.yspeed);
+				movement.setSpeed(collision.ball_speed[0], collision.ball_speed[1]);
+				cord = movement.move();
+				display.ellipse(cord[0],cord[1], Settings.BALL_SIZE,Settings.BALL_SIZE);
+			}
+
+		}
+		
+		
+		
 	}
 
 }

@@ -26,16 +26,21 @@ public class Paddle extends AbstractView {
 	 * @param mouseX the mouse X
 	 * @return the optimizedPosition
 	 */
-	private static float checkBoundaries(final float mouseX) {
-		float optimizedPosition = mouseX;
-
-		if (optimizedPosition + Settings.PADDLE_WIDTH / 2 > Settings.WINDOW_WIDTH) {
-			optimizedPosition = Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH / 2;
-		} else if (optimizedPosition < Settings.PADDLE_WIDTH / 2) {
-			optimizedPosition = Settings.PADDLE_WIDTH / 2;
-		}
-
-		return optimizedPosition;
+	
+	Tryfun prv = new Tryfun();
+	private float checkBoundaries(final float mouseX) {
+//		float optimizedPosition = mouseX;
+//
+//		if (optimizedPosition + Settings.PADDLE_WIDTH / 2 > Settings.WINDOW_WIDTH) {
+//			optimizedPosition = Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH / 2;
+//		} else if (optimizedPosition < Settings.PADDLE_WIDTH / 2) {
+//			optimizedPosition = Settings.PADDLE_WIDTH / 2;
+//		}
+//
+//		return optimizedPosition;
+//		float move = mouseX;
+		return prv.limit(mouseX);
+		
 	}
 
 	/*
@@ -46,8 +51,9 @@ public class Paddle extends AbstractView {
 	@Override
 	public void update() {
 		display.fill(Settings.PADDLE_COLOR);
-		display.rect(checkBoundaries(display.mouseX) - Settings.PADDLE_WIDTH / 2, Y_POSITION, Settings.PADDLE_WIDTH,
-				Settings.PADDLE_HEIGHT);
+//		display.rect(checkBoundaries(display.mouseX) - Settings.PADDLE_WIDTH / 2, Y_POSITION, Settings.PADDLE_WIDTH,
+//				Settings.PADDLE_HEIGHT);
+		display.rect(checkBoundaries(display.mouseX), Y_POSITION, Settings.PADDLE_WIDTH, Settings.PADDLE_HEIGHT);
 	}
 
 }

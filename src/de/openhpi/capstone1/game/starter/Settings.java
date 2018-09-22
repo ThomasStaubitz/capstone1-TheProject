@@ -50,7 +50,7 @@ public final class Settings {
 
 	/** The Constant BALL_SIZE_MULTIPLICATOR. */
 	private static final float BALL_SIZE_MULTIPLICATOR = 0.05f;
-
+	
 	/** The Constant BALL_SIZE. */
 	public static final int BALL_SIZE = (int) Math
 			.floor(Math.min(WINDOW_HEIGHT, WINDOW_WIDTH) * BALL_SIZE_MULTIPLICATOR);
