@@ -11,6 +11,7 @@ public class Paddle extends AbstractView {
 	/** The y position. */
 	private static final float Y_POSITION = Settings.WINDOW_HEIGHT - Settings.PADDLE_HEIGHT;
 
+	/** The prv. */
 	Tryfun prv = new Tryfun(display);
 
 	/**
@@ -22,6 +23,12 @@ public class Paddle extends AbstractView {
 		super(display);
 	}
 
+	/**
+	 * Check boundaries.
+	 *
+	 * @param mouseX the mouse X
+	 * @return the float
+	 */
 	private float checkBoundaries(final float mouseX) {
 		return prv.limit(mouseX);
 	}
