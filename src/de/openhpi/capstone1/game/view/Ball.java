@@ -29,7 +29,7 @@ public class Ball extends AbstractView {
 	public Ball(final PApplet display) {
 		super(display);
 	}
-
+	Paddle pad = new Paddle(display);
 	/*
 	 * (non-Javadoc)
 	 *
@@ -46,12 +46,12 @@ public class Ball extends AbstractView {
 			display.ellipse(cord[0], cord[1], Settings.BALL_SIZE, Settings.BALL_SIZE);
 			first = 1;
 		} else {
-			if (collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed)) {
+			if (collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed,pad.display.mouseX)) {
 				movement.randomStart();
 				cord = movement.move();
 				display.ellipse(cord[0], cord[1], Settings.BALL_SIZE, Settings.BALL_SIZE);
 			} else {
-				collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed);
+				collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed,pad.display.mouseX);
 				movement.setSpeed(collision.ballSpeed[0], collision.ballSpeed[1]);
 				cord = movement.move();
 				display.ellipse(cord[0], cord[1], Settings.BALL_SIZE, Settings.BALL_SIZE);
