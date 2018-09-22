@@ -23,5 +23,7 @@
 hs_err_pid*
 
 # Classpath
-.classpath
+/.classpath
+
+# Bin folder
 /bin/
