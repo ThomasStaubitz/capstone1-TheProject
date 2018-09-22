@@ -1,5 +1,8 @@
 package de.openhpi.capstone1.game.view;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import de.openhpi.capstone1.game.starter.Settings;
 import processing.core.PApplet;
 
@@ -10,6 +13,12 @@ public class Paddle extends AbstractView {
 
 	/** The y position. */
 	private static final float Y_POSITION = Settings.WINDOW_HEIGHT - Settings.PADDLE_HEIGHT;
+
+	/** The x position. */
+	private float xPosition = 0;
+
+	/** The changes. */
+	private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	/** The prv. */
 	Tryfun prv = new Tryfun(display);
@@ -33,6 +42,24 @@ public class Paddle extends AbstractView {
 		return prv.limit(mouseX);
 	}
 
+	/**
+	 * Adds the property change listener.
+	 *
+	 * @param listener the listener
+	 */
+	public void addPropertyChangeListener(final PropertyChangeListener listener) {
+		changes.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Removes the property change listener.
+	 *
+	 * @param listener the listener
+	 */
+	public void removePropertyChangeListener(final PropertyChangeListener listener) {
+		changes.removePropertyChangeListener(listener);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -41,6 +68,20 @@ public class Paddle extends AbstractView {
 	@Override
 	public void update() {
 		display.fill(Settings.PADDLE_COLOR);
-		display.rect(checkBoundaries(display.mouseX), Y_POSITION, Settings.PADDLE_WIDTH, Settings.PADDLE_HEIGHT);
+		setXPosition(checkBoundaries(display.mouseX));
+		display.rect(xPosition, Y_POSITION, Settings.PADDLE_WIDTH, Settings.PADDLE_HEIGHT);
+	}
+
+	/**
+	 * Sets the x position.
+	 *
+	 * @param newXPosition the new x position
+	 */
+	private void setXPosition(final float newXPosition) {
+		if (xPosition == newXPosition)
+			return;
+
+		changes.firePropertyChange("xPosition", xPosition, newXPosition);
+		xPosition = newXPosition;
 	}
 }

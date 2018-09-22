@@ -15,6 +15,9 @@ public class Ball extends AbstractView {
 	/** The cord. */
 	int[] cord = new int[2];
 
+	/** The paddle X position. */
+	private int paddleXPosition = 0;
+
 	/** The movement. */
 	BallMove movement = new BallMove(display);
 
@@ -29,7 +32,7 @@ public class Ball extends AbstractView {
 	public Ball(final PApplet display) {
 		super(display);
 	}
-	Paddle pad = new Paddle(display);
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -46,16 +49,25 @@ public class Ball extends AbstractView {
 			display.ellipse(cord[0], cord[1], Settings.BALL_SIZE, Settings.BALL_SIZE);
 			first = 1;
 		} else {
-			if (collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed,pad.display.mouseX)) {
+			if (collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed, paddleXPosition)) {
 				movement.randomStart();
 				cord = movement.move();
 				display.ellipse(cord[0], cord[1], Settings.BALL_SIZE, Settings.BALL_SIZE);
 			} else {
-				collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed,pad.display.mouseX);
+				collision.collideWithWall(movement.x, movement.y, movement.xspeed, movement.yspeed, paddleXPosition);
 				movement.setSpeed(collision.ballSpeed[0], collision.ballSpeed[1]);
 				cord = movement.move();
 				display.ellipse(cord[0], cord[1], Settings.BALL_SIZE, Settings.BALL_SIZE);
 			}
 		}
+	}
+
+	/**
+	 * Sets the paddle X position.
+	 *
+	 * @param paddleXPosition the new paddle X position
+	 */
+	public void setPaddleXPosition(final int paddleXPosition) {
+		this.paddleXPosition = paddleXPosition;
 	}
 }

@@ -19,8 +19,13 @@ public class GameScreen extends InteractiveComponent {
 		super(display);
 
 		views.add(new Background(display));
-		views.add(new Paddle(display));
-		views.add(new Ball(display));
+
+		final Paddle paddle = new Paddle(display);
+		views.add(paddle);
+
+		final Ball ball = new Ball(display);
+		paddle.addPropertyChangeListener(event -> ball.setPaddleXPosition(Math.round((float) event.getNewValue())));
+		views.add(ball);
 	}
 
 	/*
@@ -31,5 +36,4 @@ public class GameScreen extends InteractiveComponent {
 	@Override
 	public void handleEvent() {
 	}
-
 }

@@ -1,8 +1,5 @@
 package de.openhpi.capstone1.game.view;
 
-
-import javax.tools.Diagnostic;
-
 import de.openhpi.capstone1.game.starter.Settings;
 import processing.core.PApplet;
 
@@ -19,11 +16,10 @@ public class CollideWith extends AbstractView {
 	 *
 	 * @param display the display
 	 */
-	
+
 	public CollideWith(final PApplet display) {
 		super(display);
 	}
-
 
 	/**
 	 * Collide with wall.
@@ -32,12 +28,13 @@ public class CollideWith extends AbstractView {
 	 * @param yball  the yball
 	 * @param xspeed the xspeed
 	 * @param yspeed the yspeed
+	 * @param xpad   the xpad
 	 * @return true, if successful
 	 */
-	public boolean collideWithWall(final int xball, final int yball, int xspeed, int yspeed, int xpad) {
-		
-		int d =(int)Math.abs((yball + (int)Settings.BALL_SIZE / 2) -(int)(Settings.WINDOW_HEIGHT - Settings.PADDLE_HEIGHT)); 
-				
+	public boolean collideWithWall(final int xball, final int yball, int xspeed, int yspeed, final int xpad) {
+		final int d = Math
+				.abs((yball + Settings.BALL_SIZE / 2) - (int) (Settings.WINDOW_HEIGHT - Settings.PADDLE_HEIGHT));
+
 		if ((xball + Settings.BALL_SIZE / 2 == Settings.WINDOW_WIDTH) || (xball - Settings.BALL_SIZE / 2 == 0)) {
 			xspeed = -xspeed;
 			ballSpeed[0] = xspeed;
@@ -53,25 +50,21 @@ public class CollideWith extends AbstractView {
 			yspeed = -yspeed;
 			ballSpeed[0] = xspeed;
 			ballSpeed[1] = yspeed;
-		} else if(d < 5) {
-			if(xball + (int)Settings.BALL_SIZE >= xpad && xball + (int)Settings.BALL_SIZE <= xpad +(int)Settings.PADDLE_WIDTH + 30) {
-			
+		} else if (d < 5) {
+			if (xball + Settings.BALL_SIZE >= xpad
+					&& xball + Settings.BALL_SIZE <= xpad + (int) Settings.PADDLE_WIDTH + 30) {
+
 				yspeed = -yspeed;
-				if(xpad>= Settings.WINDOW_WIDTH) {
-					
+				if (xpad >= Settings.WINDOW_WIDTH) {
 					xspeed = xspeed + 1;
-					
-				}else {
-					
+				} else {
 					xspeed = xspeed - 1;
-					
 				}
-				
+
 				ballSpeed[0] = xspeed;
 				ballSpeed[1] = yspeed;
-				
 			}
-		}else{
+		} else {
 			ballSpeed[0] = xspeed;
 			ballSpeed[1] = yspeed;
 		}
