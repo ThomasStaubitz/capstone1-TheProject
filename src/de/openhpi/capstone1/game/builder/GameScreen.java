@@ -24,7 +24,12 @@ public class GameScreen extends InteractiveComponent {
 		views.add(paddle);
 
 		final Ball ball = new Ball(display);
-		paddle.addPropertyChangeListener(event -> ball.setPaddleXPosition(Math.round((float) event.getNewValue())));
+		paddle.addPropertyChangeListener(event -> {
+			if (event.getPropertyName() == "xPosition") {
+				ball.setPaddleXPosition(Math.round((float) event.getNewValue()));
+			}
+		});
+
 		views.add(ball);
 	}
 
